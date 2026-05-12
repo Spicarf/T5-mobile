@@ -1,10 +1,10 @@
-# 📱 Aplikasi Data Pasien
+# Aplikasi Data Pasien
 
 Aplikasi Android sederhana untuk menampilkan daftar data pasien menggunakan REST API. Dibangun dengan Kotlin, Retrofit, dan RecyclerView.
 
 ---
 
-## 📸 Screenshot
+## Screenshot
 
 | Login                           | Daftar Pasien                            |
 |---------------------------------|------------------------------------------|
@@ -24,7 +24,7 @@ Aplikasi Android sederhana untuk menampilkan daftar data pasien menggunakan REST
 
 ---
 
-## 🛠️ Teknologi
+## Teknologi
 
 | Library | Versi | Fungsi |
 |---------|-------|--------|
@@ -38,7 +38,7 @@ Aplikasi Android sederhana untuk menampilkan daftar data pasien menggunakan REST
 
 ---
 
-## 🔗 API
+## API
 
 Base URL: `https://api.pahrul.my.id/api/`
 
@@ -47,52 +47,15 @@ Base URL: `https://api.pahrul.my.id/api/`
 | POST | `/login` | Login, mendapatkan token |
 | GET | `/pasien` | Mengambil daftar pasien (butuh token) |
 
-### Contoh Request Login
+### Login
 
 ```json
-POST /api/login
-Content-Type: application/json
-
-{
-  "email": "admin@example.com",
-  "password": "password"
-}
+email   : admin@example.com
+password: password
 ```
-
-### Contoh Response Login
-
-```json
-{
-  "access_token": "eyJ...",
-  "token_type": "Bearer",
-  "user": {
-    "id": 1,
-    "name": "Admin",
-    "email": "admin@example.com"
-  }
-}
-```
-
-### Contoh Response Pasien
-
-```json
-{
-  "data": [
-    {
-      "id": 18,
-      "nama": "L3pang",
-      "tanggal_lahir": "1990-05-15",
-      "jenis_kelamin": "Laki-laki",
-      "alamat": "3pan",
-      "no_telepon": "081234567890"
-    }
-  ]
-}
-```
-
 ---
 
-## 📁 Struktur Project
+## Struktur Project
 
 ```
 app/
@@ -108,8 +71,6 @@ app/
     │   │   ├── LoginResponse.kt       # Response login + token
     │   │   ├── Pasien.kt              # Model data pasien
     │   │   └── PasienResponse.kt      # Wrapper response list pasien
-    │   ├── utils/
-    │   │   └── SessionManager.kt      # Simpan & ambil token
     │   ├── LoginActivity.kt           # Halaman login
     │   └── PasienActivity.kt          # Halaman daftar pasien
     └── res/
@@ -125,11 +86,11 @@ app/
 
 ---
 
-## 🚀 Cara Menjalankan
+## Cara Menjalankan
 
 1. Clone repository ini
    ```bash
-   git clone https://github.com/username/nama-repo.git
+   git clone https://github.com/spicarf/T5-mobile
    ```
 
 2. Buka di **Android Studio**
@@ -142,7 +103,7 @@ app/
 
 ---
 
-## ⚙️ Konfigurasi
+## ⚙Konfigurasi
 
 Jika ingin mengganti base URL API, ubah di `RetrofitClient.kt`:
 
@@ -152,7 +113,7 @@ private const val BASE_URL = "https://api.pahrul.my.id/api/"
 
 ---
 
-## 👤 Developer
+## Developer
 
 | |                     |
 |-|---------------------|
