@@ -54,8 +54,8 @@ POST /api/login
 Content-Type: application/json
 
 {
-  "email": "user@example.com",
-  "password": "password123"
+  "email": "admin@example.com",
+  "password": "password"
 }
 ```
 
@@ -68,7 +68,7 @@ Content-Type: application/json
   "user": {
     "id": 1,
     "name": "Admin",
-    "email": "user@example.com"
+    "email": "admin@example.com"
   }
 }
 ```
