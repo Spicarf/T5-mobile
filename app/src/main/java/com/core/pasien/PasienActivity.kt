@@ -18,68 +18,40 @@ class PasienActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityPasienBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.rvPasien.layoutManager =
-            LinearLayoutManager(this)
+        val token = intent.getStringExtra("TOKEN") ?: ""
 
-        loadPasien()
+        binding.rvPasien.layoutManager = LinearLayoutManager(this)
+
+        loadPasien(token)
     }
 
-    private fun loadPasien() {
-
+    private fun loadPasien(token: String) {
         binding.progressBar.visibility = View.VISIBLE
         binding.tvEmpty.visibility = View.GONE
 
         lifecycleScope.launch {
-
             try {
-
-                val response =
-                    RetrofitClient.instance.getPasien()
-                println(response.body())
-                println(response.errorBody()?.string())
+                val response = RetrofitClient.instance.getPasien("Bearer $token")
+                println("RAW JSON = ${response.raw().body?.toString()}")
                 if (response.isSuccessful) {
-
-                    val data =
-                        response.body()?.data
-
-                    if (data != null && data.isNotEmpty()) {
-
-                        binding.rvPasien.adapter =
-                            PasienAdapter(data)
-
+                    val data = response.body()?.data
+                    if (!data.isNullOrEmpty()) {
+                        binding.rvPasien.adapter = PasienAdapter(data)
                     } else {
-
-                        binding.tvEmpty.visibility =
-                            View.VISIBLE
-
-                        binding.tvEmpty.text =
-                            "Tidak ada data pasien"
+                        binding.tvEmpty.visibility = View.VISIBLE
+                        binding.tvEmpty.text = "Tidak ada data pasien"
                     }
-
                 } else {
-
-                    Toast.makeText(
-                        this@PasienActivity,
-                        "Gagal memuat data",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    Toast.makeText(this@PasienActivity, "Gagal memuat data", Toast.LENGTH_SHORT).show()
                 }
-
             } catch (e: Exception) {
-
-                Toast.makeText(
-                    this@PasienActivity,
-                    "Error: ${e.message}",
-                    Toast.LENGTH_LONG
-                ).show()
+                Toast.makeText(this@PasienActivity, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+            } finally {
+                binding.progressBar.visibility = View.GONE
             }
-
-            binding.progressBar.visibility =
-                View.GONE
         }
     }
 }

@@ -3,13 +3,24 @@ package com.core.pasien.model
 import com.google.gson.annotations.SerializedName
 
 data class Pasien(
+    @SerializedName("id")
     val id: Int?,
-    val name: String?,
-    val no_rm: String?,
-    val tanggal_lahir: String?,
-    val jenis_kelamin: String?,
+
+    @SerializedName("nama")
+    val nama: String?,
+
+    @SerializedName("tanggal_lahir")
+    val tanggalLahir: String?,
+
+    @SerializedName("jenis_kelamin")
+    val jenisKelamin: String?,
+
+    @SerializedName("alamat")
     val alamat: String?,
-    val no_telepon: String?,
-    val created_at: String?,
-    val updated_at: String?
+
+    @SerializedName("no_telepon")
+    val noTelepon: String?,
+
+    @SerializedName("created_at")
+    val createdAt: String?
 )

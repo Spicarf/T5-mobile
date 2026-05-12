@@ -41,28 +41,36 @@ class LoginActivity : AppCompatActivity() {
             try {
                 val response = RetrofitClient.instance.login(LoginRequest(email, password))
 
-                println(response.body())
-                println(response.errorBody()?.string())
-                /*if (response.isSuccessful) {
-                    val token = response.body()?.token
+                println("CODE = ${response.code()}")
+                println("BODY = ${response.body()}")
+                println("ERROR = ${response.errorBody()?.string()}")
+
+                if (response.isSuccessful) {
+                    val body = response.body()
+                    val token = body?.accessToken
+                        ?: body?.token
+                        ?: body?.data?.accessToken
+                        ?: body?.data?.token
+
                     if (!token.isNullOrEmpty()) {
                         val intent = Intent(this@LoginActivity, PasienActivity::class.java)
                         intent.putExtra("TOKEN", token)
                         startActivity(intent)
                         finish()
                     } else {
+                        println("SEMUA FIELD NULL, body = ${response.body()}")
                         showError("Login gagal: token tidak ditemukan")
                     }
-                } */
-                if (response.isSuccessful) {
-                    startActivity(
-                        Intent(this@LoginActivity, PasienActivity::class.java)
-                    )
-                    finish()
                 }
                 else {
                     showError("Login gagal: email atau password salah")
                 }
+                val rawJson = response.body().toString()
+                println("FULL BODY = $rawJson")
+
+                // Dan kalau error:
+                val errJson = response.errorBody()?.string()
+                println("ERROR BODY = $errJson")
             } catch (e: Exception) {
                 showError("Koneksi gagal: ${e.message}")
             } finally {

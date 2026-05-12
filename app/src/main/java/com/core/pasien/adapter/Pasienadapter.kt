@@ -13,11 +13,11 @@ class PasienAdapter(private val list: List<Pasien>) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(pasien: Pasien) {
-            binding.tvNama.text = pasien.name ?: "-"
-            binding.tvNoRm.text = "No. RM: ${pasien.no_rm ?: "-"}"
-            binding.tvJenisKelamin.text = pasien.jenis_kelamin ?: "-"
-            binding.tvTanggalLahir.text = "Tgl Lahir: ${pasien.tanggal_lahir ?: "-"}"
-            binding.tvAlamat.text = pasien.alamat ?: "-"
+            binding.tvNama.text         = pasien.nama ?: "-"
+            binding.tvNoRm.text         = "No. Telp: ${pasien.noTelepon ?: "-"}"
+            binding.tvJenisKelamin.text = pasien.jenisKelamin ?: "-"
+            binding.tvTanggalLahir.text = "Tgl Lahir: ${pasien.tanggalLahir ?: "-"}"
+            binding.tvAlamat.text       = pasien.alamat ?: "-"
         }
     }
 
